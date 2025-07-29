@@ -3,25 +3,657 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Compliance Pack - Psychology Squared</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="David Lopis - AI Consultant for Clinicians. Professional AI consulting, speaking engagements, and training services for healthcare practitioners.">
+    <meta name="keywords" content="AI consultant, healthcare AI, clinical AI, David Lopis, AI training, speaking engagements">
+    <meta name="author" content="David Lopis">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="David Lopis - AI Consultant for Clinicians">
+    <meta property="og:description" content="Building effective and responsible AI use in clinical practice">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://speaker.aiforclin.com">
+    
+    <title>David Lopis - AI Consultant for Clinicians</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>        
+        :root {
+            --primary-gold: #D4AF37;
+            --gold-light: #F4E4BC;
+            --gold-dark: #B8941F;
+            --navy-dark: #1A2B44;
+            --navy-darker: #14223A;
+            --navy-deepest: #0F1A2E;
+            --text-primary: #D4AF37;
+            --text-secondary: #F4E4BC;
+            --text-muted: #C4B078;
+            --border-color: rgba(212, 175, 55, 0.3);
+            --hover-bg: rgba(212, 175, 55, 0.15);
+            --card-bg: rgba(212, 175, 55, 0.08);
+            --card-bg-alt: rgba(212, 175, 55, 0.12);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: linear-gradient(135deg, var(--navy-deepest) 0%, var(--navy-darker) 50%, var(--navy-dark) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(15, 26, 46, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2rem;
+        }
+
+        .nav-links.desktop {
+            display: flex;
+        }
+
+        .nav-link {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus {
+            color: var(--primary-gold);
+            outline: none;
+        }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--primary-gold);
+        }
+
+        .mobile-menu {
+            display: none;
+            border-top: 1px solid var(--border-color);
+            padding: 1rem 0;
+            margin-top: 1rem;
+        }
+
+        .mobile-menu.show {
+            display: block;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text {
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+        }
+
+        .hero-title-accent {
+            color: var(--primary-gold);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem 2rem;
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .hero-cta:hover::before,
+        .hero-cta:focus::before {
+            left: 100%;
+        }
+
+        .hero-cta:hover,
+        .hero-cta:focus {
+            background: var(--hover-bg);
+            border-color: var(--primary-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+            outline: none;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 1rem;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-alt {
+            background: var(--card-bg);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.05em;
+        }
+
+        .section-title-accent {
+            color: var(--primary-gold);
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .section-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .section-text.muted {
+            color: var(--text-muted);
+        }
+
+        /* Card Styles */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .card:hover::before,
+        .card:focus-within::before {
+            left: 100%;
+        }
+
+        .card:hover,
+        .card:focus-within {
+            background: var(--hover-bg);
+            border-color: var(--primary-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-list {
+            list-style: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Two Column Layout */
+        .two-col-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Timeline/Event Styles */
+        .event-item {
+            border-left: 2px solid var(--primary-gold);
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .event-title {
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem 1.5rem;
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            font-family: 'Lora', serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before,
+        .btn:focus::before {
+            left: 100%;
+        }
+
+        .btn:hover,
+        .btn:focus {
+            background: var(--hover-bg);
+            border-color: var(--primary-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+            outline: none;
+        }
+
+        .btn-primary {
+            background: var(--primary-gold);
+            color: var(--navy-deepest);
+            border-color: var(--primary-gold);
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: var(--gold-light);
+            color: var(--navy-deepest);
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            color: var(--text-secondary);
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Media Link Styles */
+        .media-link {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .media-link:hover,
+        .media-link:focus {
+            color: var(--gold-light);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .nav-links.desktop {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+
+            .hero-text {
+                text-align: left;
+            }
+
+            .two-col-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cards-grid.four-col {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .btn-group {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-img {
+                width: 360px;
+                height: 360px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .nav-links.desktop {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* Animation Styles */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        @media (prefers-contrast: high) {
+            .card,
+            .btn,
+            .hero-cta {
+                border-width: 3px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="nav-brand">
-                <h2>Psychology Squared</h2>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">AI CONSULTANT</div>
+            
+            <!-- Desktop Navigation -->
+            <div class="nav-links desktop">
+                <button class="nav-link" onclick="scrollToSection('home')">Home</button>
+                <button class="nav-link" onclick="scrollToSection('about')">About</button>
+                <button class="nav-link" onclick="scrollToSection('speaking')">Speaking</button>
+                <button class="nav-link" onclick="scrollToSection('services')">Services</button>
+                <button class="nav-link" onclick="scrollToSection('contact')">Contact</button>
             </div>
-            <nav class="nav">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#contents" class="nav-link">Contents</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span id="mobile-menu-icon">&#9776;</span>
+            </button>
+            
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-menu" class="mobile-menu">
+                <div class="mobile-nav-links">
+                    <button class="nav-link" onclick="scrollToSection('home')">Home</button>
+                    <button class="nav-link" onclick="scrollToSection('about')">About</button>
+                    <button class="nav-link" onclick="scrollToSection('speaking')">Speaking</button>
+                    <button class="nav-link" onclick="scrollToSection('services')">Services</button>
+                    <button class="nav-link" onclick="scrollToSection('contact')">Contact</button>
+                </div>
+            </div>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -29,217 +661,291 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title">
-                        AI COMPLIANCE<br>
-                        <span class="hero-accent">PACK</span>
+                        AI FOR<br />
+                        <span class="hero-title-accent">CLINICIANS</span>
                     </h1>
-                    <p class="hero-subtitle">For Australian Psychologists</p>
-                    <p class="hero-description">
-                        Get your AI compliance essentials. NOW COMPLETED<br>
-                        Presale now for AI compliance essentials for psychologists, consistent with Australian regulations.
-                    </p>
-                    
-                    <!-- Shopify Buy Button -->
-                    <div class="buy-button-container">
-                        <div id='product-component-1752313817695'></div>
-                    </div>
-                    
-                    <div class="price-info">
-                        <span class="current-price">$199 (inc GST)</span>
-                    </div>
+                    <p class="hero-subtitle">Building effective and responsible AI use</p>
+                    <a href="#contact" class="hero-cta" onclick="scrollToSection('contact')">
+                        GET IN TOUCH<br />
+                        <small style="font-weight: 400; font-size: 0.9rem;">Transform Your Practice</small>
+                    </a>
                 </div>
-                
-                <div class="hero-visual">
-                    <div class="compliance-symbols">
-                        <div class="symbol shield">🛡️</div>
-                        <div class="symbol document">📋</div>
-                        <div class="symbol checkmark">✅</div>
-                        <div class="symbol legal">⚖️</div>
-                        <div class="symbol australia">🇦🇺</div>
-                    </div>
+                <div class="hero-image">
+                    <img src="professionalHeadshot.png" alt="David Lopis - AI Consultant" class="hero-img" />
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
+    <section id="about" class="section section-alt">
         <div class="container">
-            <h2 class="section-title">About the AI Compliance Pack</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Now immediately available upon purchase</h3>
-                    <p>
-                        The <strong>AI Compliance Pack</strong> is part of your AI compliance essentials for psychologists who currently use or are planning to implement AI in their practices. It serves as a cost-effective alternative to independently developing compliance materials. This purchase item for a single purchaser for their own access <strong>only</strong>
-                    </p>
-                </div>
-                
-                <div class="trust-badges">
-                    <div class="badge">
-                        <div class="badge-icon">🛡️</div>
-                        <div class="badge-text">
-                            <h4>Legal Compliance</h4>
-                            <p>Drafted by PGC Legal Pty Ltd</p>
-                        </div>
-                    </div>
-                    <div class="badge">
-                        <div class="badge-icon">📋</div>
-                        <div class="badge-text">
-                            <h4>Ready to Use</h4>
-                            <p>Immediately available</p>
-                        </div>
-                    </div>
-                    <div class="badge">
-                        <div class="badge-icon">🇦🇺</div>
-                        <div class="badge-text">
-                            <h4>Australian Standards</h4>
-                            <p>Consistent with regulations</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pack Contents Section -->
-    <section id="contents" class="contents">
-        <div class="container">
-            <h2 class="section-title">Pack Contents</h2>
-            <div class="contents-grid">
-                <div class="content-item">
-                    <div class="content-icon">📄</div>
-                    <h3>AI Policy Template</h3>
-                    <p>drafted by PGC Legal Pty Ltd</p>
-                </div>
-                <div class="content-item">
-                    <div class="content-icon">🔒</div>
-                    <h3>Privacy Policy Template</h3>
-                    <p>drafted by PGC Legal Pty Ltd</p>
-                </div>
-                <div class="content-item">
-                    <div class="content-icon">✅</div>
-                    <h3>Consent Form for AI use</h3>
-                    <p>drafted by PGC Legal Pty Ltd</p>
-                </div>
-                <div class="content-item">
-                    <div class="content-icon">📋</div>
-                    <h3>AI Implementation Checklist</h3>
-                    <p>drafted by PGC Legal Pty Ltd</p>
-                </div>
-                <div class="content-item">
-                    <div class="content-icon">📝</div>
-                    <h3>Session Transcript Recommendation</h3>
-                    <p>Guidance on inclusion of session transcript/audio file in clinical notes drafted by PGC Legal Pty Ltd</p>
-                </div>
-            </div>
-            
-            <!-- Second Buy Button -->
-            <div class="buy-button-container secondary">
-                <div id='product-component-secondary'></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Options -->
-    <section class="pricing">
-        <div class="container">
-            <h2 class="section-title">Pricing Options</h2>
-            <div class="pricing-grid">
-                <div class="pricing-card featured">
-                    <h3>Individual Pack</h3>
-                    <div class="price">
-                        <span class="current">$199 (inc GST)</span>
-                    </div>
-                    <p>Single purchaser access only</p>
-                </div>
-                <div class="pricing-card contact-card">
-                    <h3>Medium Practice Bundle</h3>
-                    <div class="price">
-                        <span class="contact-text">Contact for Quote</span>
-                    </div>
-                    <p>2-5 Practitioners</p>
-                    <a href="mailto:david@psychologysquared.com.au?subject=Medium Practice Bundle Quote" class="contact-btn">Get Quote</a>
-                </div>
-                <div class="pricing-card contact-card">
-                    <h3>Large Practice Package</h3>
-                    <div class="price">
-                        <span class="contact-text">Contact for Quote</span>
-                    </div>
-                    <p>6-10 Practitioners</p>
-                    <a href="mailto:david@psychologysquared.com.au?subject=Large Practice Package Quote" class="contact-btn">Get Quote</a>
-                </div>
-            </div>
-            <p class="pricing-note">
-                Contact us for larger group discounts: <a href="mailto:david@psychologysquared.com.au">david@psychologysquared.com.au</a>
+            <h2 class="section-title">
+                About <span class="section-title-accent">David Lopis</span>
+            </h2>
+            <p class="section-text">
+                Australian registered psychologist, AI consultant, and board-approved supervisor with extensive experience in speaking engagements 
+                and thought leadership in the intersection of artificial intelligence and mental health care. 
+                Since early 2023, David has been at the forefront of AI integration in clinical practice, helping clinicians navigate the evolving landscape 
+                of responsible AI adoption in therapeutic settings.
             </p>
+            <p class="section-text muted">
+                As Director of Psychology Squared, David has built a thriving community of over 3,500 clinicians learning to use AI in therapy. 
+                His expertise spans training with major organizations including the Australian Psychological Society (APS), 
+                Australian Association of Psychologists Inc. (AAPi), and Australian Clinical Psychology Association (ACPA).
+            </p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <span class="card-icon">&#128483;</span>
+                    <h3 class="card-title">Speaking & Training</h3>
+                    <p class="card-text">Keynote speaker at major conferences including APS, AAPi, and ACPA events</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">&#128101;</span>
+                    <h3 class="card-title">Psychology Squared</h3>
+                    <p class="card-text">Director of thriving community with 3,500+ clinicians learning AI integration</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">&#128214;</span>
+                    <h3 class="card-title">AI Tools Expertise</h3>
+                    <p class="card-text">Extensive demo events with Heidi, BastionGPT, Everbility, and many more AI solutions</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Legal Disclaimers -->
-    <section class="legal">
+    <!-- Speaking & Events Section -->
+    <section id="speaking" class="section">
         <div class="container">
-            <h2 class="section-title">Important Legal Information</h2>
-            <div class="legal-content">
-                <div class="legal-section">
-                    <h3>Information is Not Legal Advice</h3>
-                    <p>
-                        The above information, content and template documents (together <strong>'the content'</strong>) are the intellectual property of PGC Legal Pty Ltd and the provision of them by Psychology Squared does not constitute legal advice, and is provided for information only.
-                    </p>
-                    <p>
-                        The content is intended only to provide a summary and general overview on matters of interest. It is not intended to be comprehensive. It is not intended to be a substitute for legal advice, and should not be relied upon as such. You should seek independent legal advice or other professional advice in relation to any particular matters you or your organisation may have. The content is current as at the date of initial publication.
-                    </p>
+            <h2 class="section-title">
+                Speaking & <span class="section-title-accent">Events</span>
+            </h2>
+            <p class="section-subtitle">Leading AI training and thought leadership across Australia's top psychology organizations</p>
+            
+            <div class="two-col-grid">
+                <div class="card">
+                    <h3 class="card-title">Major Conference Presentations</h3>
+                    <div>
+                        <div class="event-item">
+                            <h4 class="event-title">ASAICP Symposium 2025 - Keynote Speaker</h4>
+                            <p class="event-desc">"Empowering Psychologists in the Age of AI" - Melbourne</p>
+                        </div>
+                        <div class="event-item">
+                            <h4 class="event-title">Australian Psychological Society (APS)</h4>
+                            <p class="event-desc">College of Clinical Psychologists - "Getting Started with AI"</p>
+                        </div>
+                        <div class="event-item">
+                            <h4 class="event-title">Australian Association of Psychologists Inc. (AAPi)</h4>
+                            <p class="event-desc">"Getting Started with AI for Psychologists" - Live Webinar</p>
+                        </div>
+                        <div class="event-item">
+                            <h4 class="event-title">Australian Clinical Psychology Association (ACPA)</h4>
+                            <p class="event-desc">"AI in Clinical Practice" - Panel Discussion</p>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="legal-section">
-                    <h3>Limitation of Liability</h3>
-                    <p>
-                        Neither PGC Legal Pty Ltd nor Psychology Squared are responsible to you or anyone else for any loss suffered in connection with the use of the content.
-                    </p>
-                    <p>
-                        PGC Legal Pty Ltd and Psychology Squared makes no warranties or representations about the content. We exclude, to the maximum extent permitted by law, any liability which may arise as a result of the use of this content. Where liability cannot be excluded, any liability incurred by use in relation to the use of this content is limited to the extent provided for by the Australian Consumer Law (Schedule 2 of the Competition and Consumer Act 2010). To the extent permitted by law, we will not be liable for any indirect, incidental, special or consequential loss.
-                    </p>
+                <div class="card">
+                    <h3 class="card-title">Training & Workshops</h3>
+                    <div>
+                        <div class="event-item">
+                            <h4 class="event-title">AI Basics for Clinicians</h4>
+                            <p class="event-desc">Foundational AI concepts and hands-on guidance</p>
+                        </div>
+                        <div class="event-item">
+                            <h4 class="event-title">AI for Social Workers</h4>
+                            <p class="event-desc">Tailored training for social work professionals</p>
+                        </div>
+                        <div class="event-item">
+                            <h4 class="event-title">Social Media & AI for Psychologists</h4>
+                            <p class="event-desc">Leveraging AI for professional outreach</p>
+                        </div>
+                        <div class="event-item">
+                            <h4 class="event-title">AI Tool Demonstrations</h4>
+                            <p class="event-desc">Live demo events featuring Heidi, BastionGPT, Everbility, and many more AI solutions</p>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="legal-section">
-                    <h3>No Solicitor / Client relationship</h3>
-                    <p>
-                        Your use of this content is not intended to create, nor does it create, a solicitor-client relationship between you and PGC Legal Pty Ltd.
-                    </p>
-                    <p>
-                        Liability limited by a scheme approved under Professional Standards Legislation.
-                    </p>
+    <!-- Services Section -->
+    <section id="services" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">
+                Our <span class="section-title-accent">Services</span>
+            </h2>
+            <p class="section-subtitle">Comprehensive AI integration solutions for mental health professionals</p>
+            
+            <div class="cards-grid four-col">
+                <div class="card">
+                    <span class="card-icon">&#128197;</span>
+                    <h3 class="card-title">Individual Consultation</h3>
+                    <p class="card-text">One-on-one guidance for AI implementation in your practice</p>
+                    <ul class="card-list">
+                        <li>• Personalized AI strategy</li>
+                        <li>• Risk assessment</li>
+                        <li>• Implementation planning</li>
+                    </ul>
                 </div>
+                <div class="card">
+                    <span class="card-icon">&#128101;</span>
+                    <h3 class="card-title">Group Training</h3>
+                    <p class="card-text">Workshops for teams and organizations</p>
+                    <ul class="card-list">
+                        <li>• Team workshops</li>
+                        <li>• Best practices training</li>
+                        <li>• Ethical guidelines</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <span class="card-icon">&#128483;</span>
+                    <h3 class="card-title">Speaking Engagements</h3>
+                    <p class="card-text">Keynotes and presentations for conferences</p>
+                    <ul class="card-list">
+                        <li>• Conference keynotes</li>
+                        <li>• Professional development</li>
+                        <li>• Industry insights</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <span class="card-icon">&#128214;</span>
+                    <h3 class="card-title">Compliance Pack</h3>
+                    <p class="card-text">Essential resources for responsible AI use</p>
+                    <ul class="card-list">
+                        <li>• Regulatory guidance</li>
+                        <li>• Documentation templates</li>
+                        <li>• Risk management tools</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="legal-section">
-                    <h3>Terms and Conditions</h3>
-                    <p>
-                        By purchasing you agree to the terms and conditions available here: 
-                        <a href="https://psychologysquared.com.au/termsandconditions" target="_blank">https://psychologysquared.com.au/termsandconditions</a>
-                    </p>
-                    <p>
-                        By purchasing you agree to the AI standards: 
-                        <a href="https://psychologysquared.com.au/ai-standards" target="_blank">https://psychologysquared.com.au/ai-standards</a>
-                    </p>
+    <!-- Media Section -->
+    <section id="media" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                Media & <span class="section-title-accent">Interviews</span>
+            </h2>
+            <p class="section-subtitle">Featured insights on AI in psychology across podcasts and industry publications</p>
+            
+            <div class="two-col-grid">
+                <div class="card">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="width: 3rem; height: 3rem; background: var(--card-bg-alt); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <span style="font-size: 1.5rem;">&#128214;</span>
+                        </div>
+                        <div>
+                            <h3 class="card-title" style="margin-bottom: 0.5rem;">Mastering Therapy Podcast</h3>
+                            <p class="card-text" style="margin-bottom: 0.75rem; font-size: 0.9rem;">
+                                "Using AI in Your Therapy Practice (Part 2)" with Dr. Natalie Stott
+                            </p>
+                            <p class="card-text muted" style="margin-bottom: 0.75rem; font-size: 0.8rem;">
+                                45-minute interview covering AI for session transcription, clinical notes, and client engagement
+                            </p>
+                            <a href="https://podcasts.apple.com/in/podcast/s2e3-using-ai-in-your-therapy-practice-part-2-with/id1773673403?i=1000694246459" 
+                               target="_blank" rel="noopener noreferrer" class="media-link">
+                                Listen to Episode →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                        <div style="width: 3rem; height: 3rem; background: var(--card-bg-alt); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <span style="font-size: 1.5rem;">&#128101;</span>
+                        </div>
+                        <div>
+                            <h3 class="card-title" style="margin-bottom: 0.5rem;">AI in Allied Health Series</h3>
+                            <p class="card-text" style="margin-bottom: 0.75rem; font-size: 0.9rem;">
+                                "ChatGPT and Beyond: AI's Impact on Psychology" with Barry T. Nguyen
+                            </p>
+                            <p class="card-text muted" style="margin-bottom: 0.75rem; font-size: 0.8rem;">
+                                YouTube interview on AI revolutionizing mental health practice and ethical safeguards
+                            </p>
+                            <a href="https://www.youtube.com/watch?v=HGHgiP-x73Q" 
+                               target="_blank" rel="noopener noreferrer" class="media-link">
+                                Watch Interview →
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact" class="section section-alt">
         <div class="container">
-            <h2 class="section-title">Contact Information</h2>
-            <div class="contact-content">
-                <p>This is a product by <strong>Psychology Squared</strong></p>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <strong>Email:</strong> <a href="mailto:hello@psychologysquared.com.au">hello@psychologysquared.com.au</a>
+            <h2 class="section-title">
+                Get In <span class="section-title-accent">Touch</span>
+            </h2>
+            <p class="section-subtitle">Ready to transform your clinical practice with responsible AI integration?</p>
+            
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="window.open('mailto:david@psychologysquared.com.au?subject=Speaking Engagement Inquiry', '_blank')">
+                    <span style="margin-right: 0.5rem;">&#128483;</span> Book Speaking Engagement
+                </button>
+                <button class="btn" onclick="window.open('mailto:david@psychologysquared.com.au?subject=AI Consultation Request', '_blank')">
+                    <span style="margin-right: 0.5rem;">&#128197;</span> Schedule AI Consultation
+                </button>
+                <button class="btn" onclick="window.open('https://psychologysquared.com', '_blank')">
+                    <span style="margin-right: 0.5rem;">&#128101;</span> Join 3,500+ Clinicians
+                </button>
+            </div>
+            
+            <div class="two-col-grid">
+                <div>
+                    <h3 class="section-title" style="font-size: 1.5rem; text-align: left; margin-bottom: 1.5rem;">Contact Information</h3>
+                    <div style="margin-bottom: 2rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <span style="color: var(--primary-gold); font-size: 1.5rem;">✉</span>
+                            <span class="section-text" style="margin: 0; text-align: left;">Contact for pricing and availability</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <span style="color: var(--primary-gold); font-size: 1.5rem;">&#128197;</span>
+                            <span class="section-text" style="margin: 0; text-align: left;">Flexible scheduling for all time zones</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <span style="color: var(--primary-gold); font-size: 1.5rem;">&#128101;</span>
+                            <span class="section-text" style="margin: 0; text-align: left;">Individual and group consultations available</span>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <strong>Mobile:</strong> <a href="tel:0423048009">0423 048 009</a>
+                    
+                    <h4 class="card-title" style="margin-bottom: 1rem;">Follow Our Work</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn" onclick="window.open('https://www.linkedin.com/in/davidlopis/', '_blank')">
+                            <span style="margin-right: 0.5rem;">in</span> LinkedIn
+                        </button>
+                        <!-- <button class="btn" onclick="window.open('https://twitter.com/davidlopis', '_blank')">
+                            <span style="margin-right: 0.5rem;">&#120143;</span> Twitter
+                        </button> -->
                     </div>
-                    <div class="contact-item">
-                        <strong>Facebook Group:</strong> <a href="https://www.facebook.com/groups/austpsychai" target="_blank">Australian Psychology AI Community</a>
-                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title" style="margin-bottom: 1.5rem;">Send a Message</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input type="text" name="name" required class="form-input" placeholder="Your full name" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" required class="form-input" placeholder="your.email@example.com" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Organization</label>
+                            <input type="text" name="organization" class="form-input" placeholder="Your organization or practice" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea name="message" required class="form-textarea" placeholder="Tell us about your AI integration needs..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -248,175 +954,107 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Psychology Squared Pty Ltd. All rights reserved.</p>
+            <p class="footer-text">
+                © 2025 David Lopis - AI Consultant for Clinicians. Building effective and responsible AI use.
+            </p>
         </div>
     </footer>
 
-    <!-- Shopify Buy Button Script -->
-    <script type="text/javascript">
-    /*<![CDATA[*/
-    (function () {
-      var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-      if (window.ShopifyBuy) {
-        if (window.ShopifyBuy.UI) {
-          ShopifyBuyInit();
-        } else {
-          loadScript();
+    <script>
+        'use strict';
+        
+        // Smooth scroll to section
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const offset = 80; // Account for fixed nav
+                const elementPosition = element.offsetTop - offset;
+                window.scrollTo({
+                    top: elementPosition,
+                    behavior: 'smooth'
+                });
+                // Hide mobile menu after navigation
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu && window.innerWidth < 768) {
+                    mobileMenu.classList.remove('show');
+                    document.getElementById('mobile-menu-icon').innerHTML = '&#9776;';
+                }
+            }
         }
-      } else {
-        loadScript();
-      }
-      function loadScript() {
-        var script = document.createElement('script');
-        script.async = true;
-        script.src = scriptURL;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
-        script.onload = ShopifyBuyInit;
-      }
-      function ShopifyBuyInit() {
-        var client = ShopifyBuy.buildClient({
-          domain: 'psychologysquared.myshopify.com',
-          storefrontAccessToken: 'e5349db68c14dcaa80ecc69650a44622',
-        });
-        ShopifyBuy.UI.onReady(client).then(function (ui) {
-          // Primary buy button
-          ui.createComponent('product', {
-            id: '15068378595697',
-            node: document.getElementById('product-component-1752313817695'),
-            moneyFormat: '%24%7B%7Bamount%7D%7D',
-            options: {
-              "product": {
-                "styles": {
-                  "product": {
-                    "@media (min-width: 601px)": {
-                      "max-width": "calc(25% - 20px)",
-                      "margin-left": "20px",
-                      "margin-bottom": "50px"
-                    }
-                  }
-                },
-                "buttonDestination": "checkout",
-                "contents": {
-                  "img": false,
-                  "title": false,
-                  "price": false
-                },
-                "text": {
-                  "button": "Buy now"
-                }
-              },
-              "productSet": {
-                "styles": {
-                  "products": {
-                    "@media (min-width: 601px)": {
-                      "margin-left": "-20px"
-                    }
-                  }
-                }
-              },
-              "modalProduct": {
-                "contents": {
-                  "img": false,
-                  "imgWithCarousel": true,
-                  "button": false,
-                  "buttonWithQuantity": true
-                },
-                "styles": {
-                  "product": {
-                    "@media (min-width: 601px)": {
-                      "max-width": "100%",
-                      "margin-left": "0px",
-                      "margin-bottom": "0px"
-                    }
-                  }
-                },
-                "text": {
-                  "button": "Add to cart"
-                }
-              },
-              "option": {},
-              "cart": {
-                "text": {
-                  "total": "Subtotal",
-                  "button": "Checkout"
-                }
-              },
-              "toggle": {}
-            },
-          });
-          
-          // Secondary buy button
-          if (document.getElementById('product-component-secondary')) {
-            ui.createComponent('product', {
-              id: '15068378595697',
-              node: document.getElementById('product-component-secondary'),
-              moneyFormat: '%24%7B%7Bamount%7D%7D',
-              options: {
-                "product": {
-                  "styles": {
-                    "product": {
-                      "@media (min-width: 601px)": {
-                        "max-width": "calc(25% - 20px)",
-                        "margin-left": "20px",
-                        "margin-bottom": "50px"
-                      }
-                    }
-                  },
-                  "buttonDestination": "checkout",
-                  "contents": {
-                    "img": false,
-                    "title": false,
-                    "price": false
-                  },
-                  "text": {
-                    "button": "Buy now"
-                  }
-                },
-                "productSet": {
-                  "styles": {
-                    "products": {
-                      "@media (min-width: 601px)": {
-                        "margin-left": "-20px"
-                      }
-                    }
-                  }
-                },
-                "modalProduct": {
-                  "contents": {
-                    "img": false,
-                    "imgWithCarousel": true,
-                    "button": false,
-                    "buttonWithQuantity": true
-                  },
-                  "styles": {
-                    "product": {
-                      "@media (min-width: 601px)": {
-                        "max-width": "100%",
-                        "margin-left": "0px",
-                        "margin-bottom": "0px"
-                      }
-                    }
-                  },
-                  "text": {
-                    "button": "Add to cart"
-                  }
-                },
-                "option": {},
-                "cart": {
-                  "text": {
-                    "total": "Subtotal",
-                    "button": "Checkout"
-                  }
-                },
-                "toggle": {}
-              },
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
+                icon.innerHTML = '&#9776;'; // hamburger icon
+            } else {
+                menu.classList.add('show');
+                icon.innerHTML = '&times;'; // close icon
+            }
+        }
+
+        // Animation on load
+        const animateElements = () => {
+            const elements = document.querySelectorAll('.section, .card, .hero-content');
+            elements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        element.classList.add('fade-in');
+                        element.style.opacity = '';
+                        element.style.transform = '';
+                    }, index * 100);
+                });
             });
-          }
+        };
+
+        // Close mobile menu on resize
+        const handleResize = () => {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            if (window.innerWidth >= 768 && menu) {
+                menu.classList.remove('show');
+                icon.innerHTML = '&#9776;';
+            }
+        };
+
+        // Contact form handler
+        const handleContactForm = (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const name = formData.get('name') || '';
+            const email = formData.get('email') || '';
+            const organization = formData.get('organization') || '';
+            const message = formData.get('message') || '';
+            
+            const subject = encodeURIComponent('Contact Form: ' + name + ' from ' + organization);
+            const body = encodeURIComponent(
+                'Name: ' + name + 
+                '\nEmail: ' + email + 
+                '\nOrganization: ' + organization + 
+                '\n\nMessage:\n' + message
+            );
+            
+            window.open('mailto:david@psychologysquared.com.au?subject=' + subject + '&body=' + body, '_blank');
+        };
+
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', () => {
+            animateElements();
+            
+            // Add event listeners
+            window.addEventListener('resize', handleResize);
+            
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', handleContactForm);
+            }
         });
-      }
-    })();
-    /*]]>*/
     </script>
 </body>
 </html>
-
