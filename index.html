@@ -158,9 +158,45 @@
             gap: 1rem;
         }
 
+        .nav-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            margin: 6rem 0 0 2rem;
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .nav-button:hover,
+        .nav-button:focus {
+            background: var(--hover-bg);
+            border-color: var(--primary-gold);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            outline: none;
+        }
+
+        .nav-button-arrow.back {
+            transform: rotate(180deg);
+        }
+
         /* Hero Section */
         .hero {
             padding: 8rem 0 4rem;
+            padding-top: 0;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -675,6 +711,11 @@
             </div>
         </div>
     </nav>
+
+    <a href="https://aiforclin.com" class="nav-button back">
+        <span class="nav-button-arrow back">→</span>
+        <span>Return to Dashboard</span>
+    </a>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
