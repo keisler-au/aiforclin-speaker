@@ -633,8 +633,71 @@
         .price-lg { font-size: 2rem; font-weight: 700; color: var(--primary-gold); }
         .price-range { font-size: 1.75rem; font-weight: 700; color: var(--primary-gold); }
         .subtitle-muted { color: var(--text-muted); font-size: 0.9rem; margin: 0; }
-        .panel-alt { background: var(--card-bg-alt); border: 1px solid var(--border-color); border-radius: 0.5rem; padding: 2rem; }
+        .panel-alt { border: 1px solid var(--border-color); border-radius: 0.5rem; padding: 2rem; }
         .auto-grid-300 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+
+
+        .contact-form {
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            border: 2px solid #4a5568;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #f6e05e;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #4a5568;
+            border-radius: 6px;
+            background: #1a202c;
+            color: #e2e8f0;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #f6e05e;
+        }
+
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            color: #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+        }
 
         /* Responsive Design */
         @media (min-width: 768px) {
@@ -1034,7 +1097,7 @@
                 </div>
                 
                 <div class="center">
-                    <button class="btn btn-primary" onclick="window.open('mailto:david@psychologysquared.com.au?subject=Speaking Engagement Booking', '_blank')">
+                    <button class="btn btn-primary" onclick="openBookingForm('speaking', 'general')">
                         Book Speaking Engagement
                     </button>
                 </div>
@@ -1074,7 +1137,7 @@
                 </ul>
                 
                 <div class="center">
-                    <button class="btn btn-primary" onclick="window.open('mailto:david@psychologysquared.com.au?subject=AI Consultation Request', '_blank')">
+                    <button class="btn btn-primary" onclick="openBookingForm('consulting', 'general')">
                         Schedule Consultation
                     </button>
                 </div>
@@ -1107,7 +1170,7 @@
                                 <span class="text-gold">✓</span> Written recommendations
                             </li>
                         </ul>
-                        <button class="btn w-100" onclick="window.open('mailto:david@psychologysquared.com.au?subject=Product Review Request', '_blank')">
+                        <button class="btn w-100" onclick="openBookingForm('company', 'product-review')">
                             Book Product Review
                         </button>
                     </div>
@@ -1138,7 +1201,7 @@
                         <p class="text-muted fs-09 mb-15 center italic">
                             Prior discussion required to ensure suitability
                         </p>
-                        <button class="btn w-100" onclick="window.open('mailto:david@psychologysquared.com.au?subject=Ongoing Assistance Request', '_blank')">
+                        <button class="btn w-100" onclick="openBookingForm('company', 'ongoing-assistance')">
                             Request Ongoing Assistance
                         </button>
                     </div>
@@ -1232,6 +1295,113 @@
         </div>
     </footer>
 
+    <!-- Contact Form Modal (moved to end of body to avoid transform stacking context issues) -->
+    <div id="booking-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; padding: 20px; overflow-y: auto;">
+        <div style="max-width: 600px; margin: 50px auto; position: relative;">
+            <button onclick="closeBookingForm()" style="position: absolute; top: -40px; right: 0; background: none; border: none; color: #f6e05e; font-size: 2rem; cursor: pointer;">×</button>
+            <div class="contact-form">
+                <h3 style="color: #f6e05e; margin-bottom: 20px; text-align: center;">Book Your Service</h3>
+
+                <!-- Step 1: Service Selection -->
+                <div class="form-step active" id="step-1">
+                    <div class="form-group">
+                        <label>Selected Service:</label>
+                        <input type="text" id="selected-service" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-navigation">
+                        <div></div>
+                        <button class="btn" onclick="nextStep()">Next Step →</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Organization Details -->
+                <div class="form-step" id="step-2">
+                    <div class="form-group">
+                        <label for="organization">Organization/Practice Name</label>
+                        <input type="text" id="organization">
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Your Role</label>
+                        <input type="text" id="role" placeholder="e.g., Psychologist, Practice Manager">
+                    </div>
+                    <div class="form-group" id="group-size-group">
+                        <label for="group-size">Expected Group Size</label>
+                        <select id="group-size">
+                            <option value="">Select group size</option>
+                            <option value="1">Individual (1 person)</option>
+                            <option value="2">Duo (2 people)</option>
+                            <option value="3-10">Small group (3-10 people)</option>
+                            <option value="11-50">Medium group (11-50 people)</option>
+                            <option value="50+">Large group (50+ people)</option>
+                        </select>
+                    </div>
+                    <div class="form-navigation">
+                        <button class="btn btn-secondary" onclick="prevStep()">← Previous</button>
+                        <button class="btn" onclick="nextStep()">Next Step →</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Event Details -->
+                <div class="form-step" id="step-3">
+                    <div class="form-group">
+                        <label for="preferred-date">Preferred Date(s)</label>
+                        <input type="text" id="preferred-date" placeholder="e.g., March 15-20, 2024">
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Budget Range (Optional)</label>
+                        <select id="budget">
+                            <option value="">Select budget range</option>
+                            <option value="under-500">Under $500</option>
+                            <option value="500-1000">$500 - $1,000</option>
+                            <option value="1000-2000">$1,000 - $2,000</option>
+                            <option value="2000-5000">$2,000 - $5,000</option>
+                            <option value="5000+">$5,000+</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Event Location/Format</label>
+                        <select id="location">
+                            <option value="">Select format</option>
+                            <option value="in-person">In-person</option>
+                            <option value="virtual">Virtual/Online</option>
+                            <option value="hybrid">Hybrid</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                    </div>
+                    <div class="form-navigation">
+                        <button class="btn btn-secondary" onclick="prevStep()">← Previous</button>
+                        <button class="btn" onclick="nextStep()">Next Step →</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Additional Information -->
+                <div class="form-step" id="step-4">
+                    <div class="form-group">
+                        <label for="specific-topics">Specific Topics of Interest</label>
+                        <textarea id="specific-topics" rows="3" placeholder="e.g., AI scribes, clinical documentation, ethical considerations"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="additional-info">Additional Information</label>
+                        <textarea id="additional-info" rows="4" placeholder="Any additional details about your requirements, audience, or special considerations"></textarea>
+                    </div>
+                    <div class="form-navigation">
+                        <button class="btn btn-secondary" onclick="prevStep()">← Previous</button>
+                        <button class="btn" onclick="submitForm()">Submit Request</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         'use strict';
 
@@ -1276,6 +1446,14 @@
             }
         };
 
+        // Smooth scroll helper for in-page links
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
         // Contact form handler
         const handleContactForm = (event) => {
             event.preventDefault();
@@ -1306,6 +1484,158 @@
             const contactForm = document.getElementById('contact-form');
             if (contactForm) {
                 contactForm.addEventListener('submit', handleContactForm);
+            }
+        });
+
+        let currentStep = 1;
+        let selectedService = '';
+        let selectedType = '';
+
+        function toggleSection(sectionId) {
+            const content = document.getElementById(sectionId + '-content');
+            const icon = document.getElementById(sectionId + '-icon');
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                icon.textContent = '▼';
+            } else {
+                // Close all other sections
+                document.querySelectorAll('.service-content').forEach(section => {
+                    section.classList.remove('expanded');
+                });
+                document.querySelectorAll('.expand-icon').forEach(icon => {
+                    icon.textContent = '▼';
+                });
+                
+                // Open selected section
+                content.classList.add('expanded');
+                icon.textContent = '▲';
+            }
+        }
+
+        function openBookingForm(service, type) {
+            selectedService = service;
+            selectedType = type;
+            
+            const serviceNames = {
+                'speaking': {
+                    'general': 'Speaking Engagement (Pricing varies by group size)'
+                },
+                'consulting': {
+                    'general': 'AI Consultation (Individual or Duo)'
+                },
+                'company': {
+                    'product-review': 'Product Review ($770 Inc GST)',
+                    'ongoing-assistance': 'Ongoing Assistance ($1,000-2,000/month)'
+                }
+            };
+            
+            document.getElementById('selected-service').value = serviceNames[service][type];
+            document.getElementById('booking-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Reset form
+            currentStep = 1;
+            showStep(1);
+            
+            // Adjust form based on service type
+            const groupSizeGroup = document.getElementById('group-size-group');
+            if (service === 'consulting' && type === 'individual') {
+                groupSizeGroup.style.display = 'none';
+            } else if (service === 'consulting' && type === 'duo') {
+                groupSizeGroup.style.display = 'none';
+            } else {
+                groupSizeGroup.style.display = 'block';
+            }
+        }
+
+        function closeBookingForm() {
+            document.getElementById('booking-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step-' + step).classList.add('active');
+            currentStep = step;
+        }
+
+        function nextStep() {
+            if (currentStep < 4) {
+                // Basic validation
+                if (currentStep === 1) {
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    if (!name || !email) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                }
+                
+                showStep(currentStep + 1);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                showStep(currentStep - 1);
+            }
+        }
+
+        function submitForm() {
+            // Collect form data
+            const formData = {
+                service: document.getElementById('selected-service').value,
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                organization: document.getElementById('organization').value,
+                role: document.getElementById('role').value,
+                groupSize: document.getElementById('group-size').value,
+                preferredDate: document.getElementById('preferred-date').value,
+                budget: document.getElementById('budget').value,
+                location: document.getElementById('location').value,
+                specificTopics: document.getElementById('specific-topics').value,
+                additionalInfo: document.getElementById('additional-info').value
+            };
+            
+            // Here you would normally send the data to your backend
+            // For now, we'll create a mailto link
+            const subject = encodeURIComponent(`Booking Request: ${formData.service}`);
+            const body = encodeURIComponent(`
+                Name: ${formData.name}
+                Email: ${formData.email}
+                Organization: ${formData.organization}
+                Role: ${formData.role}
+                Group Size: ${formData.groupSize}
+                Preferred Date(s): ${formData.preferredDate}
+                Budget Range: ${formData.budget}
+                Location/Format: ${formData.location}
+                Specific Topics: ${formData.specificTopics}
+                Additional Information: ${formData.additionalInfo}
+
+                Service Requested: ${formData.service}
+            `);
+            
+            window.location.href = `mailto:david@aiforclin.com?subject=${subject}&body=${body}`;
+            
+            // Close modal
+            closeBookingForm();
+            
+            // Show success message
+            alert('Thank you for your booking request! Your email client should open with a pre-filled message. Please send it to complete your booking request.');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('booking-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBookingForm();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeBookingForm();
             }
         });
     </script>
