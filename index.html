@@ -119,6 +119,7 @@
             cursor: pointer;
             transition: var(--transition);
             padding: 0.5rem 0;
+            text-decoration: none;
         }
 
         .nav-link:hover,
@@ -572,6 +573,69 @@
             font-size: 0.9rem;
         }
 
+        /* Utility & Component Classes (for inline style cleanup) */
+        /* Layout */
+        .flex { display: flex; }
+        .wrap { flex-wrap: wrap; }
+        .items-start { align-items: flex-start; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-05 { gap: 0.5rem; }
+        .gap-1 { gap: 1rem; }
+        .gap-2 { gap: 2rem; }
+
+        /* Spacing */
+        .m-0 { margin: 0; }
+        .mb-05 { margin-bottom: 0.5rem; }
+        .mb-075 { margin-bottom: 0.75rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-15 { margin-bottom: 1.5rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .my-2 { margin: 2rem 0; }
+        .w-100 { width: 100%; }
+        .mr-05 { margin-right: 0.5rem; }
+
+        /* Typography & color */
+        .center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-muted { color: var(--text-muted); }
+        .text-secondary { color: var(--text-secondary); }
+        .text-gold { color: var(--primary-gold); }
+        .fs-08 { font-size: 0.8rem; }
+        .fs-09 { font-size: 0.9rem; }
+        .fs-11 { font-size: 1.1rem; }
+        .fs-13 { font-size: 1.3rem; }
+        .fs-15 { font-size: 1.5rem; }
+        .fw-400 { font-weight: 400; }
+        .italic { font-style: italic; }
+
+        /* Lists */
+        .list-unstyled { list-style: none; }
+
+        /* Components */
+        .icon-box {
+            width: 3rem;
+            height: 3rem;
+            background: var(--card-bg-alt);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .hero-cta-subtitle { font-weight: 400; font-size: 0.9rem; }
+
+        .pricing-card { max-width: 600px; margin: 0 auto 3rem; }
+        .row-between { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+        .row-divider { border-bottom: 1px solid var(--border-color); }
+        .price { font-size: 1.3rem; font-weight: 600; color: var(--primary-gold); }
+        .price-lg { font-size: 2rem; font-weight: 700; color: var(--primary-gold); }
+        .price-range { font-size: 1.75rem; font-weight: 700; color: var(--primary-gold); }
+        .subtitle-muted { color: var(--text-muted); font-size: 0.9rem; margin: 0; }
+        .panel-alt { background: var(--card-bg-alt); border: 1px solid var(--border-color); border-radius: 0.5rem; padding: 2rem; }
+        .auto-grid-300 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+
         /* Responsive Design */
         @media (min-width: 768px) {
             .nav-links.desktop {
@@ -687,11 +751,12 @@
             
             <!-- Desktop Navigation -->
             <div class="nav-links desktop">
-                <button class="nav-link" onclick="scrollToSection('home')">Home</button>
-                <button class="nav-link" onclick="scrollToSection('about')">About</button>
-                <button class="nav-link" onclick="scrollToSection('speaking')">Speaking</button>
-                <button class="nav-link" onclick="scrollToSection('services')">Services</button>
-                <button class="nav-link" onclick="scrollToSection('contact')">Contact</button>
+                <a class="nav-link" href="#home">Home</a>
+                <a class="nav-link" href="#about">About</a>
+                <a class="nav-link" href="#speaking">Speaking</a>
+                <a class="nav-link" href="#services">Services</a>
+                <a class="nav-link" href="#pricing">Pricing</a>
+                <a class="nav-link" href="#contact">Contact</a>
             </div>
 
             <!-- Mobile Menu Button -->
@@ -702,11 +767,12 @@
             <!-- Mobile Navigation Menu -->
             <div id="mobile-menu" class="mobile-menu">
                 <div class="mobile-nav-links">
-                    <button class="nav-link" onclick="scrollToSection('home')">Home</button>
-                    <button class="nav-link" onclick="scrollToSection('about')">About</button>
-                    <button class="nav-link" onclick="scrollToSection('speaking')">Speaking</button>
-                    <button class="nav-link" onclick="scrollToSection('services')">Services</button>
-                    <button class="nav-link" onclick="scrollToSection('contact')">Contact</button>
+                    <a class="nav-link" href="#home">Home</a>
+                    <a class="nav-link" href="#about">About</a>
+                    <a class="nav-link" href="#speaking">Speaking</a>
+                    <a class="nav-link" href="#services">Services</a>
+                    <a class="nav-link" href="#pricing">Pricing</a>
+                    <a class="nav-link" href="#contact">Contact</a>
                 </div>
             </div>
         </div>
@@ -729,7 +795,7 @@
                     <p class="hero-subtitle">Building effective and responsible AI use</p>
                     <a href="#contact" class="hero-cta" onclick="scrollToSection('contact')">
                         GET IN TOUCH<br />
-                        <small style="font-weight: 400; font-size: 0.9rem;">Transform Your Practice</small>
+                        <small class="hero-cta-subtitle">Transform Your Practice</small>
                     </a>
                 </div>
                 <div class="hero-image">
@@ -832,6 +898,60 @@
         </div>
     </section>
 
+    
+    <!-- Media Section -->
+    <section id="media" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                Media & <span class="section-title-accent">Interviews</span>
+            </h2>
+            <p class="section-subtitle">Featured insights on AI in psychology across podcasts and industry publications</p>
+            
+            <div class="two-col-grid">
+                <div class="card">
+                    <div class="flex items-start gap-1">
+                        <div class="icon-box">
+                            <span class="fs-15">&#128214;</span>
+                        </div>
+                        <div>
+                            <h3 class="card-title mb-05">Mastering Therapy Podcast</h3>
+                            <p class="card-text mb-075 fs-09">
+                                "Using AI in Your Therapy Practice (Part 2)" with Dr. Natalie Stott
+                            </p>
+                            <p class="card-text muted mb-075 fs-08">
+                                45-minute interview covering AI for session transcription, clinical notes, and client engagement
+                            </p>
+                            <a href="https://podcasts.apple.com/in/podcast/s2e3-using-ai-in-your-therapy-practice-part-2-with/id1773673403?i=1000694246459" 
+                               target="_blank" rel="noopener noreferrer" class="media-link">
+                                Listen to Episode →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="flex items-start gap-1">
+                        <div class="icon-box">
+                            <span class="fs-15">&#128101;</span>
+                        </div>
+                        <div>
+                            <h3 class="card-title mb-05">AI in Allied Health Series</h3>
+                            <p class="card-text mb-075 fs-09">
+                                "ChatGPT and Beyond: AI's Impact on Psychology" with Barry T. Nguyen
+                            </p>
+                            <p class="card-text muted mb-075 fs-08">
+                                YouTube interview on AI revolutionizing mental health practice and ethical safeguards
+                            </p>
+                            <a href="https://www.youtube.com/watch?v=HGHgiP-x73Q" 
+                               target="_blank" rel="noopener noreferrer" class="media-link">
+                                Watch Interview →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section id="services" class="section section-alt">
         <div class="container">
@@ -885,58 +1005,148 @@
         </div>
     </section>
 
-    <!-- Media Section -->
-    <section id="media" class="section">
+    <!-- Billing & Pricing Section -->
+    <section id="pricing" class="section">
         <div class="container">
             <h2 class="section-title">
-                Media & <span class="section-title-accent">Interviews</span>
+                Billing & <span class="section-title-accent">Pricing</span>
             </h2>
-            <p class="section-subtitle">Featured insights on AI in psychology across podcasts and industry publications</p>
-            
-            <div class="two-col-grid">
-                <div class="card">
-                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
-                        <div style="width: 3rem; height: 3rem; background: var(--card-bg-alt); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                            <span style="font-size: 1.5rem;">&#128214;</span>
-                        </div>
-                        <div>
-                            <h3 class="card-title" style="margin-bottom: 0.5rem;">Mastering Therapy Podcast</h3>
-                            <p class="card-text" style="margin-bottom: 0.75rem; font-size: 0.9rem;">
-                                "Using AI in Your Therapy Practice (Part 2)" with Dr. Natalie Stott
-                            </p>
-                            <p class="card-text muted" style="margin-bottom: 0.75rem; font-size: 0.8rem;">
-                                45-minute interview covering AI for session transcription, clinical notes, and client engagement
-                            </p>
-                            <a href="https://podcasts.apple.com/in/podcast/s2e3-using-ai-in-your-therapy-practice-part-2-with/id1773673403?i=1000694246459" 
-                               target="_blank" rel="noopener noreferrer" class="media-link">
-                                Listen to Episode →
-                            </a>
-                        </div>
+            <p class="section-subtitle">Transparent pricing for all professional AI consulting services</p>
+            <div class="card pricing-card">
+                <div class="flex items-center gap-1 mb-2">
+                    <span class="card-icon m-0">&#128483;</span>
+                    <h3 class="card-title m-0">Speaking Engagement Pricing</h3>
+                </div>
+                
+                <div class="my-2">
+                    <div class="row-between row-divider">
+                        <span class="fs-11 text-secondary">Non-profit organizations</span>
+                        <span class="price">$440 (Inc GST)</span>
+                    </div>
+                    <div class="row-between row-divider">
+                        <span class="fs-11 text-secondary">Small group</span>
+                        <span class="price">$880 (Inc GST)</span>
+                    </div>
+                    <div class="row-between">
+                        <span class="fs-11 text-secondary">Large group</span>
+                        <span class="price">$1,650 (Inc GST)</span>
                     </div>
                 </div>
-                <div class="card">
-                    <div style="display: flex; align-items: flex-start; gap: 1rem;">
-                        <div style="width: 3rem; height: 3rem; background: var(--card-bg-alt); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                            <span style="font-size: 1.5rem;">&#128101;</span>
+                
+                <div class="center">
+                    <button class="btn btn-primary" onclick="window.open('mailto:david@psychologysquared.com.au?subject=Speaking Engagement Booking', '_blank')">
+                        Book Speaking Engagement
+                    </button>
+                </div>
+            </div>
+
+            <div class="card pricing-card">
+                <div class="flex items-center gap-1 mb-2">
+                    <span class="card-icon m-0">&#128197;</span>
+                    <h3 class="card-title m-0">AI Consultation</h3>
+                </div>
+                
+                <div class="my-2">
+                    <div class="row-between row-divider">
+                        <span class="fs-11 text-secondary">Individual consultation</span>
+                        <span class="price">$220/hr (Inc GST)</span>
+                    </div>
+                    <div class="row-between row-divider">
+                        <span class="fs-11 text-secondary">Duo consultation (2 people)</span>
+                        <span class="price">$330 (Inc GST)</span>
+                    </div>
+                    <div class="row-between">
+                        <span class="fs-11 text-secondary">Larger groups</span>
+                        <span class="price">Contact for pricing</span>
+                    </div>
+                </div>
+                
+                <ul class="text-muted list-unstyled my-2">
+                    <li class="flex items-center gap-05 mb-075">
+                        <span class="text-gold">✓</span> Understanding client needs
+                    </li>
+                    <li class="flex items-center gap-05 mb-075">
+                        <span class="text-gold">✓</span> Responsible AI discussion
+                    </li>
+                    <li class="flex items-center gap-05">
+                        <span class="text-gold">✓</span> Session summary and actions
+                    </li>
+                </ul>
+                
+                <div class="center">
+                    <button class="btn btn-primary" onclick="window.open('mailto:david@psychologysquared.com.au?subject=AI Consultation Request', '_blank')">
+                        Schedule Consultation
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="flex items-center gap-1 mb-2">
+                    <span class="card-icon m-0">&#128188;</span>
+                    <h3 class="card-title m-0">Company Consulting & Collaborations</h3>
+                </div>
+                
+                <div class="auto-grid-300">
+                    <div class="panel-alt">
+                        <h4 class="text-gold fs-13 mb-1 center">Product Review</h4>
+                        <div class="center mb-15">
+                            <span class="price-lg">$770</span>
+                            <p class="subtitle-muted">(Inc GST)</p>
                         </div>
-                        <div>
-                            <h3 class="card-title" style="margin-bottom: 0.5rem;">AI in Allied Health Series</h3>
-                            <p class="card-text" style="margin-bottom: 0.75rem; font-size: 0.9rem;">
-                                "ChatGPT and Beyond: AI's Impact on Psychology" with Barry T. Nguyen
-                            </p>
-                            <p class="card-text muted" style="margin-bottom: 0.75rem; font-size: 0.8rem;">
-                                YouTube interview on AI revolutionizing mental health practice and ethical safeguards
-                            </p>
-                            <a href="https://www.youtube.com/watch?v=HGHgiP-x73Q" 
-                               target="_blank" rel="noopener noreferrer" class="media-link">
-                                Watch Interview →
-                            </a>
+                        <ul class="text-muted list-unstyled mb-2">
+                            <li class="flex items-center gap-05 mb-075">
+                                <span class="text-gold">✓</span> Comprehensive tool trial
+                            </li>
+                            <li class="flex items-center gap-05 mb-075">
+                                <span class="text-gold">✓</span> Detailed debrief session
+                            </li>
+                            <li class="flex items-center gap-05 mb-075">
+                                <span class="text-gold">✓</span> 1-month follow-up
+                            </li>
+                            <li class="flex items-center gap-05">
+                                <span class="text-gold">✓</span> Written recommendations
+                            </li>
+                        </ul>
+                        <button class="btn w-100" onclick="window.open('mailto:david@psychologysquared.com.au?subject=Product Review Request', '_blank')">
+                            Book Product Review
+                        </button>
+                    </div>
+                    
+                    <div class="panel-alt">
+                        <h4 class="text-gold fs-13 mb-1 center">Ongoing Assistance</h4>
+                        <div class="center mb-15">
+                            <span class="price-range">$1,000-2,000</span>
+                            <p class="subtitle-muted">per month (by negotiation)</p>
                         </div>
+                        <ul class="text-muted list-unstyled mb-15">
+                            <li class="flex items-center gap-05 mb-075">
+                                <span class="text-gold">✓</span> Assessment and planning
+                            </li>
+                            <li class="flex items-center gap-05 mb-075">
+                                <span class="text-gold">✓</span> Implementation support
+                            </li>
+                            <li class="flex items-center gap-05 mb-075">
+                                <span class="text-gold">✓</span> Regular reviews and optimization
+                            </li>
+                            <li class="flex items-center gap-05 mb-075">
+                                <span class="text-gold">✓</span> AI governance and compliance
+                            </li>
+                            <li class="flex items-center gap-05">
+                                <span class="text-gold">✓</span> Risk management guidance
+                            </li>
+                        </ul>
+                        <p class="text-muted fs-09 mb-15 center italic">
+                            Prior discussion required to ensure suitability
+                        </p>
+                        <button class="btn w-100" onclick="window.open('mailto:david@psychologysquared.com.au?subject=Ongoing Assistance Request', '_blank')">
+                            Request Ongoing Assistance
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Contact Section -->
     <section id="contact" class="section section-alt">
@@ -1024,25 +1234,6 @@
 
     <script>
         'use strict';
-        
-        // Smooth scroll to section
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                const offset = 80; // Account for fixed nav
-                const elementPosition = element.offsetTop - offset;
-                window.scrollTo({
-                    top: elementPosition,
-                    behavior: 'smooth'
-                });
-                // Hide mobile menu after navigation
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (mobileMenu && window.innerWidth < 768) {
-                    mobileMenu.classList.remove('show');
-                    document.getElementById('mobile-menu-icon').innerHTML = '&#9776;';
-                }
-            }
-        }
 
         // Mobile menu toggle
         function toggleMobileMenu() {
